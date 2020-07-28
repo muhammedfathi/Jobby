@@ -1,2 +1,2 @@
 # Jobby
-free website for jobs
+jobby is a free website for providing job vacanies for Job seekers that posted by HR Employees, Job seeker visit our site to find A job in his related Field and then can apply for or save it later , We also help Companies and employee to Advertise new Job application and hire new employee . Jobby is created by @Mohammed Fathi Looking For A job ? If you are searching for a new career opportunity, you can search open vacancies and jobs.You can also signup here to be alerted of new jobs by email. Are you a recruiter or employer? If you are currently hiring, and would like to advertise your jobs on jobby please signup for an employer account and post your jobs right away technoligies: ASP.NET MVC ,ENTITY FRAMEWORK CODE FIRST,MSSQL SERVER
