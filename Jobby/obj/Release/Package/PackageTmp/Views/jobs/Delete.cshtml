@@ -1,0 +1,80 @@
+﻿@model Jobby.Models.job
+
+@{
+    ViewBag.Title = "Delete Job";
+}
+
+<h2 class="btn-warning">Be Careful you are going to delete job</h2>
+
+<h3>Are you sure you want to delete <b style="color:red"> @Model.job_Name Job Application ?</b></h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.job_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_requirments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_requirments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PostedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PostedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cat_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cat_name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

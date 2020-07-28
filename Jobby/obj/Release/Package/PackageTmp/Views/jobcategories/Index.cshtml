@@ -1,0 +1,110 @@
+﻿@model IEnumerable<Jobby.Models.jobcategory>
+
+@{
+    ViewBag.Title = "Job Categories";
+}
+
+    <div class=" alert alert-info">
+        <h3>Job By @Html.ActionLink("Categories", "Index") </h3>
+
+        @using (Html.BeginForm("Index", "jobcategories", FormMethod.Post))
+        {
+            <span class="input-group  ">
+                <label class="input-group-addon" for="category">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true">
+
+                    </span>
+
+
+                </label>
+
+                <input type="text" name="category" id="category" class="form-control center-block" placeholder="Find Categories .." />
+            </span>
+        }
+
+    </div>
+
+
+@if (User.IsInRole("Candidate"))
+{
+    @Html.ActionLink("All Avialable Jobs", "Index", "jobs", null, new { @class = "btn btn-success" })
+}
+
+<hr />
+
+<div class="row  row_div_cat_design">
+
+
+    @foreach (var item in Model)
+    {
+
+        <div class="col-md-3 thumbnail modal-content  jobcatdiv" style="min-height:250px; overflow:hidden; text-overflow:ellipsis;  margin:30px; background-color:#931010">
+
+            <div class="thumbnail modal-content cat_design " style="min-height:250px; max-height:250px; overflow:hidden; text-overflow:ellipsis; padding:4px; margin:19px; background-color:rgb(230, 186, 129);">
+                <h4 class="text-center ">  @Html.ActionLink(item.jCategory, "Index", "jobs", new { category = item.jCategory }, null) </h4>
+
+
+                <p class="info text-center cat_design_p" style="color:#931010"> @Html.DisplayFor(modelItem => item.Category_desc) </p>
+
+
+            </div>
+
+
+            <hr />
+            <i></i>
+            @if (User.IsInRole("Admins"))
+            {
+
+                <span class="catmang">
+                    @Html.ActionLink(" ", "Delete", new { item.CategoryId }, new { @class = "glyphicon glyphicon-trash pull-right ", @style = "color:orange" })
+                    @Html.ActionLink(" ", "Edit", new { item.CategoryId }, new { @class = "glyphicon glyphicon-pencil" })
+                </span>
+
+            }
+
+        </div>
+    }
+
+    @if (User.IsInRole("Admins"))
+    {
+        //Add New Category
+
+        <div class="col-md-3 thumbnail modal-content  " style="min-height:240px;  margin:30px;  padding-bottom:24px; background-color:#931010">
+
+            <div class="thumbnail modal-content  cat_design " style="min-height:250px;  margin:20px;  background-color:rgb(230, 186, 129);">
+                <h2 class="text-center  ">
+                    @Html.ActionLink(" ", "Create", null,
+                    new { @class = "glyphicon glyphicon-plus-sign btn btn-group btn-group-lg btn btn-block center-block   addcatg col-md-3", 
+                        @style = "font-size:110px; text-align:center" })
+                </h2>
+
+
+
+            </div>
+
+            <hr />
+
+        </div>
+
+
+    }
+    <script src="~/Scripts/myjs.js"></script>
+</div>
+
+
+
+
+@*//dropdown menu////////*@
+
+@*<div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Dropdown
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li class="glyphicon glyphicon-trash">@Html.ActionLink("Edit", "Edit", new { item.CategoryId })</li>
+
+            <li> @Html.ActionLink("Delete", "Delete", new { item.CategoryId }) </li>
+
+        </ul>
+    </div>*@

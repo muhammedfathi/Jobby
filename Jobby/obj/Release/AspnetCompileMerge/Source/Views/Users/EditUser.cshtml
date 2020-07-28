@@ -1,0 +1,178 @@
+﻿@model Jobby.Models.ApplicationUser
+@using Jobby.Models
+
+@{
+    ViewBag.Title = "EditUser";
+    ApplicationDbContext db = new ApplicationDbContext();
+}
+
+
+@using (Html.BeginForm("EditUser", "Users", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h1 class="alert alert-warning btn btn-block center-block btn-lg">  Update Your Information </h1>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <i class="col-md-1"></i>
+            <div class="col-md-4">
+                <img src="~/img/@Model.photo" class="img-thumbnail img-rounded  " style="width:150px; min-height:140px" />
+                <br />
+                <input type="file" id="photo" name="photo" class="col-md-4" />
+            </div>
+        </div>
+        <hr />
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.PasswordHash)
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.SecurityStamp)
+        @Html.HiddenFor(model => model.usertype)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.gender, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("gender", new List<SelectListItem> { new SelectListItem { Text = "Female", Value = "Female" }, new SelectListItem { Text = "Male", Value = "Male" } }, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @if (User.IsInRole("Candidate"))
+        {
+            <div class="form-group" id="showWorkField">
+                @Html.LabelFor(m => m.Workfield, new { @class = "col-md-2 control-label" })
+                <div class="col-md-7">
+                    @Html.DropDownList("WorkField", new SelectList(db.jobcategories, "jCategory", "jCategory"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Workfield, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.StartDate, "{0:dd/MM/yyyy}", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Country, new { @class = "col-md-2 control-label" })
+            <div class="col-md-7">
+                @Html.DropDownList("Country", new List<SelectListItem> {
+                                        new SelectListItem {Text="Egypt", Value="Egypt"},
+                                        new SelectListItem {Text="France", Value="France"},
+                                        new SelectListItem {Text="UK", Value="UK"},
+                                        new SelectListItem {Text="USA", Value="USA"},
+                                        new SelectListItem {Text="Germany", Value="Germany"},
+                                                         }, new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.maritialStatus, new { @class = "col-md-2 control-label" })
+            <div class="col-md-7">
+                @Html.DropDownList("maritialStatus", new List<SelectListItem>
+                                                                         {
+                                                         new SelectListItem { Text="Single",Value="Single"},
+                                                         new SelectListItem { Text="Married",Value="Married"}}
+                                                                        , new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.maritialStatus, "", new { @class = "text-danger" })
+
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.militaryStatus, new { @class = "col-md-2 control-label" })
+            <div class="col-md-7">
+                @Html.DropDownList("militaryStatus", new List<SelectListItem>
+                                                                         {
+                                                         new SelectListItem { Text="Exampted",Value="Exampted"},
+                                                         new SelectListItem { Text="Completed",Value="Completed"},
+                                                         new SelectListItem { Text="Postponed",Value="Postponed"},
+                                                         new SelectListItem { Text="Other",Value="Other"}}
+                                                                        , new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.maritialStatus, "", new { @class = "text-danger" })
+
+
+            </div>
+        </div>
+
+
+        @if (User.IsInRole("Candidate"))
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.University, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.University, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.University, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Faculty, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Faculty, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Faculty, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.GraduationYear, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.GraduationYear, "{0:dd/MM/yyyy}", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.GraduationYear, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+        }
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+

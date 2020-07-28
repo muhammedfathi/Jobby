@@ -1,0 +1,27 @@
+namespace Jobby.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class categorytable : DbMigration
+    {
+        public override void Up()
+        {
+            CreateTable(
+                "dbo.jobcategories",
+                c => new
+                    {
+                        CategoryId = c.Int(nullable: false, identity: true),
+                        jCategory = c.String(nullable: false),
+                        Category_desc = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.CategoryId);
+            
+        }
+        
+        public override void Down()
+        {
+            DropTable("dbo.jobcategories");
+        }
+    }
+}

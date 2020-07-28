@@ -1,0 +1,69 @@
+﻿@model Jobby.Models.job
+
+@{
+    ViewBag.Title = "app_details";
+}
+
+<h1 class="btn btn-success" style="margin-bottom:-6px; font-size:19px;">@Model.job_Name Application  Deatils</h1>
+
+<div class="modal-content ">
+    <h2 class="text-uppercase text-center" style="color:#aa0e0e">@Model.job_Name</h2>
+    <hr />
+    <dl class="dl-horizontal alert  text-capitalize text-center" style="font-size:17px;">
+
+
+        <dt class="alert alert-info ">
+            @Html.DisplayNameFor(model => model.job_description)
+        </dt>
+
+        <dd class=" alert-success text-center" style="padding-top:20px; margin-bottom:38px;">
+           <p> @Html.DisplayFor(model => model.job_description)</p>
+        </dd>
+       
+
+        <dt class="alert alert-info">
+            @Html.DisplayNameFor(model => model.job_requirments)
+        </dt>
+
+        <dd class=" alert-success text-center" style="padding-top:20px; margin-bottom:38px;">
+            <p>  @Html.DisplayFor(model => model.job_requirments)</p>
+        </dd>
+
+       
+        <dt class="alert alert-info">
+            @Html.DisplayNameFor(model => model.PostedBy)
+        </dt>
+
+        <dd class=" alert-success text-center" style="padding-top:20px; margin-bottom:38px;">
+            <p>  @Html.DisplayFor(model => model.PostedBy)</p>
+        </dd>
+
+
+        <dt class="alert alert-info">
+            @Html.DisplayNameFor(model => model.PostedOn)
+        </dt>
+
+        <dd class=" alert-success text-center" style="padding-top:20px; margin-bottom:38px;">
+            <p>   @Html.DisplayFor(model => model.PostedOn)</p>
+        </dd>
+
+        <dt class="alert alert-info">
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd class=" alert-success text-center" style="padding-top:20px; margin-bottom:38px;">
+            <p> @Html.DisplayFor(model => model.Location)</p>
+        </dd>
+
+        <dt class="alert alert-info">
+            @Html.DisplayNameFor(model => model.Cat_name)
+        </dt>
+
+        <dd class=" alert-success text-center" style="padding-top:20px; margin-bottom:38px;">
+            <p>   @Html.DisplayFor(model => model.Cat_name)</p>
+        </dd>
+
+    </dl>
+</div>
+
+

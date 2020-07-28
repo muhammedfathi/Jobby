@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "applied";
+}
+
+<div class=" alert alert-info col-md-12 text-center"> <h2 class="alert alert-success">You Have been Successfully Applied on This Job Before
+    <i class="glyphicon glyphicon-check"></i> </h2>
+    
+    <i class="col-md-12 glyphicon glyphicon-time">@ViewBag.on </i>
+
+    <blockquote class=" col-md-12 glyphicon glyphicon-envelope"> " @ViewBag.msg "</blockquote>
+    
+
+   
+    
+    
+    
+    
+    
+    </div> 
+<br />
+<div class=" alert  col-md-12 text-center">
+
+    @Html.ActionLink(" Your Applied  Applications", "application", "Candidate", null, new { @class = "btn btn-success col-md-3" })
+
+</div>
+
+
+
+
+<br />
+@Html.ActionLink("Back to jobs", "Index", "jobs")
+
+
+

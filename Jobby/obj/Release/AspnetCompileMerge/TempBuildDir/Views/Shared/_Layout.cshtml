@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Jobby</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Content/MyStyle.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <img src="~/img/webLogo.jpg"  style="width:116px; height:60px;"/> @*//logo*@
+            </div>
+            <div class="navbar-collapse collapse">
+
+                <ul class="nav navbar-nav  " style="font-size:22px;">
+
+                    <li class="liover" style="margin-top:5px;"> <i class="glyphicon glyphicon-home"> @Html.ActionLink("Home", "Index", "Home")</i></li>
+                    <li class="liover" style="margin-top:5px;"> <i class="glyphicon glyphicon-question-sign"> @Html.ActionLink("About", "About", "Home")</i></li>
+                    <li class="liover" style="margin-top:5px;"> <i class="glyphicon glyphicon-phone"> @Html.ActionLink("Contact", "Contact", "Home")</i></li>
+                    @if (Request.IsAuthenticated && User.IsInRole("Candidate")) //search Bar for candidate only srch4jobs
+                    {
+                        <li>
+
+                            @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+                            {
+
+                                <i class="glyphicon glyphicon-search" style="margin-top:2px">
+                                    <input type="text" name="searching" id="searching" style="width:190px;" placeholder="Search for jobs ..." />
+                                </i>
+
+
+
+
+                            }
+
+                        </li>
+                    }
+
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+
+
+            </div>
+        </div>
+    </div>
+
+
+    @*//  Page Call Body*@ 
+    <div class="container body-content" style="min-height:680px; margin-top:100px; ">
+
+
+
+
+        @RenderBody()
+
+
+    </div>
+
+
+    <footer class=" myfooter">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <h3>
+                        <i class="glyphicon glyphicon-globe"></i>
+                        Links
+                    </h3>
+                    <ul>
+                        <li><a href="#"> jobs in Egypt</a></li>
+                        <li> <a href="#"> jobs  abroad </a></li>
+                        <li><a href="#"> jobs </a> </li>
+
+                    </ul>
+
+                </div>
+                
+
+                <div class="col-md-6">
+                    <h3>
+                        <i class="glyphicon glyphicon-link"></i>
+
+                        Finds Us on
+                    </h3>
+                    <ul style="list-style-type:none; display:inline-block;">
+                        <li style="color:white">
+                            <a href="##"><i class="fa fa-facebook-f " id="fb" aria-hidden="true"></i> </a>
+                            <a href="#"><i class="fa fa-linkedin" id="ld" aria-hidden="true"></i> </a>
+                            <a href="#"> <i class="fa fa-github-alt" id="gt" aria-hidden="true"></i></a>
+                            <a href="#"><i class="fa fa-twitter" id="tw" aria-hidden="true"></i> </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <div class="mysubfooter "><p>&copy; @DateTime.Now.Year -  Eng: MO Fathi</p> </div>
+    </footer>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script src="~/Scripts/myjs.js">
+
+    </script>
+</body>
+</html>
+

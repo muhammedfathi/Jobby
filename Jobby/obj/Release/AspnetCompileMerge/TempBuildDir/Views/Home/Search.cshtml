@@ -1,0 +1,122 @@
+﻿@model IEnumerable<Jobby.Models.job>
+
+@{
+    ViewBag.Title = "Jobs";
+}
+
+@if (User.IsInRole("Recrutier"))
+{
+    <h3>
+        @Html.ActionLink("Add New Job", "Create")
+    </h3>
+}
+
+
+
+
+@if (Model.Count() == 0) //no Search Result Matching //
+{
+
+    <div class="container modal-content" style="margin-top:120px; background-color:#e65718; min-height:200px; border-radius:80px 30px 80px 0px">
+        <h1 class="alert alert-warning text-capitalize text-center " style="margin-top:50px;">
+            no Available  Jobs Matching your search <b style="color:#f85555"><del> @ViewBag.srch</del></b>
+        </h1>
+    </div>
+        <h1 class="btn alert-success" style="margin-top:70px; font-size:x-large"><b> Explore More Jobs And </b> @Html.ActionLink("Apply Now", "Index", "jobs")</h1>
+   
+}
+
+
+
+
+// x jobs //
+else
+
+{
+    <h2 class="alert alert-info" style="text-align:center; color:#580303"> Jobs Contains <b style="color:#0c4380"> <u>@ViewBag.srch</u></b> </h2>
+    <hr />
+
+
+    @*//Jobs For Candidtae*@
+    if (User.IsInRole("Candidate"))
+    {
+        <div class="container">
+
+            <div class="row">
+
+
+
+
+                @foreach (var item in Model)
+                {
+
+
+
+                    <div class="col-md-3 modal-content  jobframe">
+
+                        <h3 style="color:#1c6494 ; padding:12px ;display:block;border-bottom:4px solid #860606;" class="center-block text-center text-capitalize">
+                            @Html.ActionLink(item.job_Name.ToString(), "Details","jobs", new { id = item.jobID },null)
+                        </h3>
+
+
+                        <i class="glyphicon glyphicon-home" style="color:grey">
+
+                            <strong style="color:brown" class="text-uppercase"> @Html.DisplayFor(modelitem => item.PostedBy)</strong>
+                        </i><br />
+                        <i class=" glyphicon glyphicon-map-marker" style="color:grey">
+                            <i style="color:crimson"> @Html.DisplayFor(modelitem => item.Location)</i>
+                        </i>
+
+                        <br />
+
+                        <i class=" glyphicon glyphicon-time" style="color:grey">
+                            <i style="color:green"> @Html.DisplayFor(modelitem => item.PostedOn)</i>
+                        </i>
+
+                        <br />
+
+                        <i class=" glyphicon glyphicon-tags" style="color:grey">
+                            <b style="color:#0e2a94"> @Html.DisplayFor(modelitem => item.Cat_name)</b>
+                        </i>
+
+                        <div>
+                            <span style=" background-color:#f2d58e; margin-top:7px;" title="Description" class="thumbnail jobframeDesc">
+
+                                <q style="color:#580303; font-size:large">
+                                    @Html.DisplayFor(modelitem => item.job_description)
+                                </q>
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+
+                }
+            </div>
+
+        </div>
+    }
+
+
+
+
+   
+  
+<p> @Html.ActionLink("All Jobs", "Index", "jobs", null, new { @class = "btn  btn-success" }) </p>
+
+
+
+
+
+
+
+
+
+}
+
+
+
+

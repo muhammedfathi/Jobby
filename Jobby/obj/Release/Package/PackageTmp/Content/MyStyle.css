@@ -1,0 +1,419 @@
+﻿body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 2px;
+    margin: 0px;
+}
+.Main-Clr {
+  background-color: rgba(255, 196, 40, 0.48);
+  color:black;
+}
+.Main-Clr h1 {
+    color:#8d2623
+
+    }
+
+.navbar-fixed-top {
+    background-color: #6d0705;
+}
+
+li i a {
+    color: white;
+    margin-top: 12px;
+    line-height: 20px;
+    padding-top: 15px;
+}
+
+.body-content {
+    margin-top: 40px;
+  
+}
+
+li i {
+    color: rgb(230, 186, 129); /*offwhite*/
+    margin-top: 2px;
+    line-height: 20px;
+    padding: 10px 15px;
+}
+
+ li i:hover {
+        cursor: pointer;
+    }
+
+.navbar-brand {
+    color: white;
+    padding: 10px;
+    margin: 0px;
+}
+
+.navbar-brand a {
+        color: white;
+    }
+
+.navbar-inverse .navbar-brand {
+    color: mediumspringgreen;
+    margin-top: 4px;
+}
+
+li i a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.navbar-right li i a {
+    padding: 10px 20px;
+}
+
+.home_modal {
+    background-color: #931010;
+    padding-bottom: 12px;
+}
+
+
+.liover {
+    padding-bottom:7px;
+}
+.liover:hover {
+    background-color: #7a0a09;
+}
+
+
+.myfooter {
+    background-color: rgb(95, 11, 11);
+    text-align: center;
+    color: white;
+    border: 1px solid green;
+    padding-top: 0px;
+    margin-bottom: 0px;
+    margin-top:62px;
+    
+}
+
+.myfooter ul {
+        margin: 0px;
+        padding: 0px;
+    }
+
+ .myfooter li {
+        list-style-type: none;
+        display: block;
+        color: gray;
+    }
+
+    .myfooter li a {
+        color:white;
+    }
+
+    .myfooter li a i {
+        color: white;
+    }
+
+ .myfooter li a:hover {
+                color: white;
+                text-decoration: none;
+            }
+
+
+
+ /*page content social media*/
+#fb {
+    font-size:xx-large;
+}
+
+ #fb:hover {
+        color:#3756ac;
+    }
+
+ #tw {
+        font-size: xx-large;
+    }
+
+  #tw:hover {
+            color:#83cde1;
+        }
+
+  #gt {
+            font-size: xx-large;
+        }
+
+
+   #gt:hover {
+                color:#454242;
+            }
+
+#ld {
+    font-size: xx-large;
+}
+
+    #ld:hover {
+        color:#44a3eb;
+    }
+
+    /*endof page content socail media*/
+
+
+
+ .mysubfooter {
+        background-color: rgb(182, 108, 12);
+        padding: 0px;
+    }
+
+.myfooter {
+    padding: 0%;
+}
+
+ .myfooter p {
+        padding: 0px;
+        margin: 0px;
+    }
+
+.myfooter h3 {
+    color: rgb(230, 186, 129);
+}
+
+.cat_design {
+    background-color: #e4a80e7a;
+    margin:20px;
+    padding:15px;
+}
+
+    .cat_design h4 {
+        color: #7d0b0b;
+        font-weight: bolder;
+    }
+
+.logg_in_btn {
+    background-color:#7d0b0b;
+    color:white;
+    font-size:large;
+    font-weight:bold;
+
+}
+
+    .logg_in_btn:hover {
+        color: white;
+        background-color: #5e0707;
+    }
+
+.cat_design_p {
+    font-size: large;
+    color: #5a0505;
+}
+
+.row_div_cat_design {
+margin-bottom:40px;
+
+}
+
+/*Admin Panel Design*/
+
+.PanelView {
+
+    /**/
+}
+
+.PanelView a {
+    padding:25px;
+    color:white;
+    font-weight:bolder;
+    font-size:xx-large;
+
+}
+
+
+.AdminPanelGreen {
+        background-color: #3ad547;
+        padding: 10px;
+        margin-bottom: 30px;
+    }
+.AdminPanelGreen:hover {
+    background-color: #11b51f;
+}
+
+.AdminPanelBlue {
+    background-color: #3294c1;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+.AdminPanelBlue:hover {
+    background-color: #176689;
+}
+
+.AdminPanelOffwhite {
+    background-color: rgb(238, 187, 121);
+    padding: 10px;
+    margin-bottom: 30px;
+}
+.AdminPanelOffwhite:hover 
+   {
+        background-color: rgb(200, 142, 66);
+   }
+
+.AdminPanel {
+    background-color: #929090;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+
+.AdminPanel:hover {
+        background-color:gray;
+    }
+/*//end Panel Design/*/
+
+/*Search box input heading*/
+#searching {
+
+    color:black;
+    padding:4px;
+    border-radius:8px;
+}
+
+
+    #searching:hover {
+        transform:scale(1.2,1.2);
+        transition:1s ease-in-out ;
+
+        
+    }
+
+textarea {
+border-color:#ccc;
+}
+
+
+
+/*MangeCategory By Admin*/
+
+.addcatg {
+
+    font-size:x-large;
+}
+
+.catmang {
+    visibility:hidden;
+}
+
+
+
+/* Manage user By Admin*/
+.userframeimg {
+    width: 100%;
+    min-height: 330px;
+    max-height:330px;
+    margin-bottom: 14px;
+    margin-top:8px;
+}
+
+    .userframeimg:hover {
+    opacity:0.8;
+    cursor:pointer;
+   
+    
+    }
+
+
+.notvisible {
+
+    visibility:hidden;
+}
+/* Manage application By candidate*/
+.applicationframecandidatemang {
+visibility:hidden;
+
+}
+
+/*//job//*/
+
+.jobframe {
+    min-height: 360px;
+    min-width: 340px;
+    background-color:#eaba63; margin:22px;
+}
+.jobframeDesc {
+    background-color:#f2d58e; 
+    min-height:160px; 
+    margin-top:9px; 
+    border:9px groove #f2d58e;
+    border-radius:0% 6% 30px 4%;
+}
+
+#applyorsavejob {
+
+    background-color:#d4d3d3;
+    padding:14px;
+    margin-top:23px;
+  
+}
+
+    #applyorsavejob:hover {
+        background-color: #4b4a4a;
+    }
+
+#savedjobdone {
+}
+#unsavedjobdone {
+}
+
+.done {
+    display:normal;
+}
+
+
+
+
+    /*//////////////////////////*/
+    /*// user profile*/
+    fieldset div {
+        margin-left: 30px;
+    }
+
+fieldset legend {
+    border-bottom:1px solid #aaa;
+}
+
+ /* loading Page Contactus spinner */
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    animation-delay:3s;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+ 
+
+
+
+
+ /*//////////////////////////////////////////*/
+
+
+
+
+/*////////////////////////////*/
+
+/*//registration form//*/
+
+/*#showWorkField {
+    display: none;
+}
+#showeduFields {
+    display: none;
+}*/
+
+
+
+
+
+
+

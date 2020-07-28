@@ -1,0 +1,88 @@
+﻿@model Jobby.Models.job
+
+@{
+    ViewBag.Title = "DeleteApplication";
+}
+
+<h2>DeleteApplication</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>job</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.user.gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user.gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.job_requirments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job_requirments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PostedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PostedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cat_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cat_name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

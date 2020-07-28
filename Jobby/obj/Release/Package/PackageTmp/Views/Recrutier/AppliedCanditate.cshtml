@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Jobby.Models.AppliedUser>
+    @using Jobby.Models;
+
+@{
+    ViewBag.Title = "AppliedCanditate";
+
+    ApplicationDbContext db = new ApplicationDbContext();
+}
+
+    <h2>Applied Canditates For </h2> <h2 class="alert-success text-center"> @ViewBag.jobname</h2>
+
+
+<table class="table modal-content table-bordered" style="font-size:17px; font-family:'Times New Roman', Times, serif">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model=>model.user.UserName)
+        </th>
+        <th>
+            @Html.DisplayName("Message")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Applyon)
+        </th>
+        
+        <th> Candidate Profile</th>
+    </tr>
+
+@foreach (var item in Model) {
+
+    
+    string canditatename = db.Users.Where(usr => usr.Id ==item.AppliedUserId).FirstOrDefault().UserName;
+
+    <tr style="color:#1e679b">
+        <td style="color:#790a0a ; font-weight:bold">
+            @Html.DisplayName(canditatename)
+        </td>
+        <td>
+            <q> @Html.DisplayFor(modelItem => item.UserMessage)</q>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Applyon)
+        </td>
+        <td>
+            
+           @Html.ActionLink(" Profile ", "information","Users", 
+                           new { id= item.AppliedUserId },new {@class="btn btn-primary glyphicon glyphicon-eye-open" }) 
+           
+        </td>
+    </tr>
+    <tr> <td></td></tr>
+}
+
+</table>

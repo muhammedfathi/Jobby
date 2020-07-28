@@ -1,0 +1,131 @@
+﻿@model IEnumerable<Jobby.Models.job>
+
+@{
+    ViewBag.Title = "RecrutierApplication";
+}
+
+<h2 class="btn-success btn btn-block glyphicon glyphicon-check">All Your Previous Posted Application</h2>
+
+<h2 style="padding:10px ;margin-top:4px;">
+    @Html.ActionLink("Create New Application", "Create", "jobs", null, new { @class = "glyphicon glyphicon-plus alert alert-info btn " })
+</h2>
+<hr />
+
+@*no posted application yet*@
+@if (Model.Count() == 0)
+{
+    <div class="container modal-content text-uppercase text-center">
+        <h3 class="alert alert-info"> You haven't Post Any Application Yet </h3>
+
+    </div>
+
+
+}
+
+//previous application 
+else
+{
+
+    foreach (var item in Model)
+    {
+
+        <table class="table container table-responsive table-bordered modal-content table-hover" style="font-family:'Times New Roman', Times, serif;font-size:medium ">
+            <tr class="alert alert-info"> @*first row heading *@
+                <th>
+                    @Html.DisplayNameFor(model => model.job_Name)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.PostedBy)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PostedOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Location)
+                </th>
+            </tr>
+            <tr style="color:#890505; font-size:17px;" > @*first tow data*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.job_Name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostedBy)
+                </td>
+                <td class="col-md-1">
+                    @Html.DisplayFor(modelItem => item.PostedOn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+            </tr>
+
+            <tr><td></td></tr>
+
+            <tr class="alert alert-info"> @*second row heading*@
+              
+                <th>
+                    @Html.DisplayNameFor(model => model.job_description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.job_requirments)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cat_name)
+                </th>
+                <th>Request</th>
+
+            </tr>
+
+
+            <tr style="color:#890505; font-size:17px;"> @*second row data*@
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.job_description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.job_requirments)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cat_name)
+                </td>
+
+                <td>
+                    @if (item.IsApproved)
+                    {
+                        <i class="glyphicon glyphicon-check alert alert-success" title="Approved"> </i>
+
+                    }
+                    else
+                    {
+                        <i class="glyphicon glyphicon-time alert alert-info" title="Pending"> </i>
+
+                    }
+
+                </td>
+
+            </tr>
+        </table>
+
+        // More Action Add//Update Delete
+        <div class="col-md-2" style="margin-bottom:24px;">
+            @if (item.IsApproved == false)
+            {
+                @Html.ActionLink(" ", "EditApplication", "Recrutier", new { id = item.jobID }, new { @class = "btn btn-primary  glyphicon glyphicon-pencil" })
+            }
+            else
+            {
+                @Html.ActionLink(" ", "AppliedCanditate", new { id = item.jobID }, new { @class = "btn btn-success glyphicon glyphicon-user" })
+            }
+
+            @Html.ActionLink(" ", "DeleteApplication", "Recrutier", new { id = item.jobID }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })
+
+
+        </div>
+        <hr />
+    }
+
+
+}

@@ -1,0 +1,40 @@
+﻿@model Jobby.Models.jobcategory
+
+@{
+    ViewBag.Title = "Delete Category";
+}
+
+<h2>Delete this Category</h2>
+
+<h3>Are you sure you want to delete <b style="color:crimson">@Model.jCategory</b> Category</h3>
+<div>
+    <h4>jobcategory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.jCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jCategory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category_desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category_desc)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,117 @@
+﻿@model Jobby.Models.job
+@using Jobby.Models
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Details About job";
+    ApplicationDbContext db = new ApplicationDbContext();
+    var lginuser = User.Identity.GetUserId();
+}
+
+
+@*<h1 class="alert alert-success hidden" id="savedjobdone">
+                   Your <b style="color:#185597"> @Model.job_Name</b> Application Has Been Saved Successfully <i class="glyphicon glyphicon-check"></i> </h1>
+    <h1 class="alert alert-warning" id="unsavedjobdone">
+                 Your <b style="color:#185597"> @Model.job_Name</b> Application Has Been Removed <i class="glyphicon glyphicon-remove-sign"></i> </h1>*@
+
+<hr />
+<div class=" container modal-content" style="margin-bottom:30px;" id="jobdetails">
+    <div class="row">
+
+        <h2 class=" col-md-12 alert  alert-info  text-capitalize text-uppercase text-capitalize text-center" style="margin-top:0px;">
+
+            @Html.DisplayFor(model => model.job_Name)
+        </h2>
+        <br />
+
+
+        <div class="col-md-6">
+            <i class="glyphicon glyphicon-home" style="color:grey">
+
+                <strong style="color:brown" class="text-uppercase"> @Html.DisplayFor(item => item.PostedBy)</strong>
+            </i>
+            <br />
+
+            <i class=" glyphicon glyphicon-map-marker" style="color:grey">
+                <i style="color:crimson"> @Html.DisplayFor(item => item.Location)</i>
+            </i>
+            <br />
+
+            <i class=" glyphicon glyphicon-time" style="color:grey">
+                <i style="color:green"> @Html.DisplayFor(item => item.PostedOn)</i>
+            </i>
+            <br />
+
+            <i class=" glyphicon glyphicon-tags" style="color:grey">
+                <b style="color:#0e2a94"> @Html.DisplayFor(item => item.Cat_name)</b>
+            </i>
+
+        </div>
+
+        <span class="col-md-5" style="margin:10px;margin-right:290px;">
+            <strong style="display:block;font-size:larger ;color:#781212"> <u> Job Description :</u></strong>
+            @Html.DisplayFor(model => model.job_description)
+        </span>
+        <br />
+
+        <span class="  col-md-5" style="margin:10px;margin-right:290px;">
+            <strong style="display:block;font-size:larger ;color:#781212"> <u> Requirements:</u></strong>
+            @Html.DisplayFor(model => model.job_requirments)
+
+        </span>
+
+
+        @if (User.IsInRole("Candidate"))
+        {
+
+            <div id="applyorsavejob" class="col-md-12">
+                @Html.ActionLink("Apply", "AppliedJob", "Candidate", new { id = Model.jobID }, new { @class = "btn btn-success" })
+
+                @if (db.SaveJobs.Where(sj => sj.JobId == Model.jobID && sj.UserId == lginuser).Count() > 0)
+                {
+
+                    using (Html.BeginForm("UnSaveJob", "SaveJobs", new { id = Model.jobID }, FormMethod.Post, new { @style = "margin-top:2px;padding:2px; display:inline" }))
+
+                    {
+                        <button type="submit" class="btn btn-lg pull-right">
+
+                            <i class="glyphicon glyphicon-star  saveapp pull-right" title="Save Application" style="color:#dea640"></i>
+                        </button>
+                    }
+
+                }
+                else
+                {
+
+                    using (Html.BeginForm("SaveJob", "SaveJobs", new { id = Model.jobID }, FormMethod.Post, new { @style = "margin-top:2px;padding:2px; display:inline" }))
+
+                    {
+                        <button type="submit" class="btn btn-lg pull-right">
+
+                            <i class="glyphicon glyphicon-star-empty  saveapp pull-right" title="Save Application" style="color:#dea640"></i>
+                        </button>
+                    }
+
+
+                }
+
+
+            </div>
+        }
+
+
+    </div>
+
+
+</div>
+
+
+<p>
+    @if (User.IsInRole("Recrutier"))
+    {
+        Html.ActionLink("Edit", "Edit", new { id = Model.jobID });
+    }
+
+
+
+    @Html.ActionLink("Back to jobs", "Index")
+</p>

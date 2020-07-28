@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Jobby.Models.job>
+
+@{
+    ViewBag.Title = "Indexformadmin";
+}
+
+<h2>Indexformadmin</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+      
+        <th>
+            @Html.DisplayNameFor(model => model.job_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.job_description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.job_requirments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostedOn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsApproved)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cat_name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+     
+        <td>
+            @Html.DisplayFor(modelItem => item.job_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.job_description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.job_requirments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostedOn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsApproved)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cat_name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.jobID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.jobID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.jobID })
+        </td>
+    </tr>
+}
+
+</table>

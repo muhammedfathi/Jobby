@@ -1,0 +1,34 @@
+﻿@model Jobby.Models.AppliedUser
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h2 class="btn alert-success">@Model.job.job_Name Application</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model=>model.Id)
+        @Html.HiddenFor(model => model.JobId)
+        @Html.HiddenFor(model=>model.AppliedUserId)
+        @Html.HiddenFor(model=>model.IsApplied)
+        
+       
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserMessage,"Your Message", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="font-size:18px;">
+                @Html.TextAreaFor(model => model.UserMessage,6,40,null)
+                @Html.ValidationMessageFor(model => model.UserMessage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-info" />
+            </div>
+        </div>
+    </div>
+}
+

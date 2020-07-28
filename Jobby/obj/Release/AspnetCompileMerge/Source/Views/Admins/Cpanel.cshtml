@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "panel";
+}
+
+<h2> You Can Manage Your : </h2>
+<hr />
+<br />
+
+
+<div class="row PanelView">
+
+    @Html.ActionLink("Categories", "Index", "jobcategories", null, new { @class = "modal-content AdminPanelGreen", @style = "display:block; text-decoration:none;" })
+
+
+    @Html.ActionLink("Jobs", "Index", "jobs", new { category = "" }, new { @class = "modal-content AdminPanelBlue", @style = "display:block; text-decoration:none;" })
+
+    @Html.ActionLink("Users", "Users", "Users", null, new { @class = "modal-content AdminPanelOffwhite", @style = "display:block; text-decoration:none;" })
+
+    @Html.ActionLink("Website", "Index", "Home", null, new { @class = "modal-content modal-content AdminPanel", @style = "display:block; text-decoration:none;" })
+
+</div>
+
+

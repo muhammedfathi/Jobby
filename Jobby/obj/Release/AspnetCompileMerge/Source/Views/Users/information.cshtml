@@ -1,0 +1,170 @@
+﻿@model Jobby.Models.ApplicationUser
+    @using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "information";
+}
+<div class="container modal-content" style="background-color:#e9e9e9 ;padding:16px; margin-bottom:22px;">
+    <div class="row" style="padding:6px;">
+
+        @*//header img & contactinfo*@
+        <div class="alert alert-info col-md-12">
+            @*// cntct inf*@
+            <div class="col-md-10">
+                <h2 style="color:#3a91cc"> @Html.DisplayFor(us => us.UserName) </h2>
+
+                <div class="col-md-12">
+                    <i class="glyphicon glyphicon-phone" style="color:forestgreen"><b style="color:black"> @Html.DisplayFor(us => us.PhoneNumber)</b></i> <br />
+                    <i class="glyphicon glyphicon-envelope" style="color:#e6af57"></i>&nbsp;&nbsp; <a href="#"> @Html.DisplayFor(us => us.Email) </a>
+                </div>
+            </div>
+            @*//User photo  *@
+            <span class="col-md-2">
+                <img src="~/img/@Model.photo" style=" width:167px; height:160px;" />
+            </span>
+
+
+
+        </div>
+
+
+
+        <fieldset class="col-md-12  modal-content" style="padding:15px; margin-bottom:25px; background-color:#ddd; font-size:large">
+            <legend style="font-size:xx-large; color:#1b319b" class="">
+                <i class="glyphicon glyphicon-info-sign alert-success"></i>
+                Personal Information
+            </legend>
+
+            <div>
+                @Html.LabelFor(us => us.Country, new { @class = "col-md-2" }):
+                @Html.DisplayFor(us => us.Country, new { @class = "col-md-3" })
+
+            </div>
+            <br />
+            <div>
+                @Html.LabelFor(us => us.gender, new { @class = "col-md-2" }):
+                @Html.DisplayFor(us => us.gender, new { @class = "col-md-3" })
+            </div>
+            <br>
+            <div>
+                @Html.LabelFor(us => us.militaryStatus, new { @class = "col-md-2" }):
+                @Html.DisplayFor(us => us.militaryStatus, new { @class = "col-md-2" })
+            </div>
+
+            <br>
+            <div>
+                @Html.LabelFor(us => us.maritialStatus, new { @class = "col-md-2" }):
+                @Html.DisplayFor(us => us.maritialStatus, new { @class = "col-md-2" })
+            </div>
+            <br />
+            <div>
+                @Html.LabelFor(us => us.StartDate, new { @class = "col-md-2" }):
+                @Html.ValueFor(us => us.StartDate, "{0:dd/MM/yyyy}")
+            </div>
+
+        </fieldset>
+
+
+
+        <fieldset class="col-md-12  modal-content" style="padding:15px; margin-bottom:25px; background-color:#ddd; font-size:large">
+            <legend style="font-size:xx-large; color:#1b319b" class="">
+                <i class="glyphicon glyphicon-info-sign alert-success"></i>
+                Contact Info
+            </legend>
+
+            <div>
+                @Html.LabelFor(us => us.Email, new { @class = "col-md-2" }):
+                @Html.DisplayFor(us => us.Email, new { @class = "col-md-3" })
+
+            </div>
+            <br />
+            <div>
+                @Html.LabelFor(us => us.PhoneNumber, new { @class = "col-md-2" }):
+                @Html.DisplayFor(us => us.PhoneNumber, new { @class = "col-md-3" })
+
+            </div>
+        </fieldset>
+
+        @if (Model.usertype=="Candidate")
+        {
+    <fieldset class="col-md-12  modal-content" style="padding:15px; margin-bottom:25px; background-color:#ddd; font-size:large">
+        <legend style="font-size:xx-large; color:#1b319b" class="">
+            <i class="glyphicon glyphicon-info-sign alert-success"></i>
+            Education
+        </legend>
+
+        <div>
+            @Html.LabelFor(us => us.University, new { @class = "col-md-2" }):
+            @Html.DisplayFor(us => us.University, new { @class = "col-md-3" })
+
+        </div>
+        <br />
+        <div>
+            @Html.LabelFor(us => us.Faculty, new { @class = "col-md-2" }):
+            @Html.DisplayFor(us => us.Faculty, new { @class = "col-md-3" })
+
+
+
+        </div>
+        <br />
+        <div>
+            @Html.LabelFor(us => us.GraduationYear, new { @class = "col-md-2" }):
+            @Html.ValueFor(us => us.GraduationYear,"{0:dd/MM/yyyy}")
+
+
+
+        </div>
+
+    </fieldset>
+
+        }
+
+        <fieldset class="col-md-12  modal-content" style="padding:15px; margin-bottom:25px; background-color:#ddd; font-size:large">
+            <legend style="font-size:xx-large; color:#1b319b" class="">
+                <i class="glyphicon glyphicon-info-sign alert-success"></i>
+                Account Info
+            </legend>
+
+            <div>
+                @Html.LabelFor(us => us.usertype, new { @class = "col-md-2" }):
+                @Html.DisplayFor(us => us.usertype, new { @class = "col-md-3" })
+
+            </div>
+            <br />
+            <div>
+                @Html.LabelFor(us => us.Workfield, new { @class = "col-md-2" }):
+                @if (Model.Workfield == null)
+                {
+
+                    @Html.DisplayFor(us => us.usertype, new { @class = "col-md-3" })
+                }
+
+                else
+                {
+                @Html.DisplayFor(us => us.Workfield, new { @class = "col-md-3" })
+                }
+
+
+            </div>
+        </fieldset>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+@if(User.Identity.GetUserId()==Model.Id)
+    { 
+<p>
+    @Html.ActionLink("Edit", "EditUser", new { id = Model.Id }, new { @class = "btn btn-primary" })
+</p>
+}

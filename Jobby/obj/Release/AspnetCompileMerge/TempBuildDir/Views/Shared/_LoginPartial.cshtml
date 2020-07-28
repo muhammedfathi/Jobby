@@ -1,0 +1,188 @@
+﻿@using Microsoft.AspNet.Identity
+@using Jobby.Models
+@{
+
+    ApplicationDbContext db = new ApplicationDbContext();
+}
+
+
+@if (Request.IsAuthenticated)
+{
+
+    var LoggedInUser = db.Users.Find(User.Identity.GetUserId()); // to know user & get profilePhoto
+
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+
+    <ul class="nav navbar-nav navbar-right">
+
+
+        <li id="pp" style="" >
+            <a href="~/Users/information/@LoggedInUser.Id" style="padding:2px; margin-left:36px;"title = "Profile">
+            <img src="~/img/@LoggedInUser.photo" class=" img-rounded img-circle img-thumbnail" style="width:60px; height:50px; " />
+            @*@Html.ActionLink("Edit", "information", "Users", new { id = User.Identity.GetUserId() }, htmlAttributes:
+              new { title = "Profile", @class = "btn btn-primary btn-block" })*@
+            </a>
+           
+        </li>
+
+
+        @*menulist for loggedin-user*@
+        <li class="dropdown liover" style="margin:6px;margin-left:30px;;margin-top:13px; ">
+            <a href="#" class="dropdown-toggle  nav navbar-nav navbar-right" data-toggle="dropdown" style="margin-top:-14px;">
+                <span style="color:white; font-size:17px;">Hello  @LoggedInUser.UserName </span>
+                <i class="glyphicon glyphicon-chevron-down btn btn-xs" style="background-color:rgb(230, 186, 129); color:white; margin-top:-3px;"></i>
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-right  ">
+                @*List inside the Menu*@
+
+                <li>
+                    <div class="row" style="padding-right:7px;">
+                        <div class="col-md-4">
+                            <i class="glyphicon glyphicon-list"></i>
+
+                        </div>
+
+                        <div class="col-md-8">
+                            @{
+
+                                if (User.IsInRole("Recrutier"))
+                                {
+
+                                    @Html.ActionLink("Application", "RecrutierApplication", "Recrutier",
+                                   new { id = User.Identity.GetUserId() }, htmlAttributes: new { title = "Posted Applications !", @class = "btn btn-success btn-block" })
+
+                                }
+
+                                else if (User.IsInRole("Candidate"))
+                                {
+
+                                    @Html.ActionLink("Application", "application", "Candidate",
+                                     new { id = User.Identity.GetUserId() }, htmlAttributes: new { title = "Applied Applications !", @class = "btn btn-success btn-block" })
+                                }
+
+
+                                else if (User.IsInRole("Admins"))
+                                {
+
+
+
+                                    @Html.ActionLink("Panel", "Cpanel", "Admins",
+                                   new { id = User.Identity.GetUserId() }, htmlAttributes: new { title = "Manage Website !", @class = "btn btn-success btn-block" })
+
+                                }
+
+
+
+                            }
+
+                        </div>
+                    </div>
+
+
+
+                </li>
+
+                <li class="divider"></li>
+
+             @*Saved Application by Candidates*@
+            @if (User.IsInRole("Candidate"))
+            {
+                <li>
+                    <div class="row" style="padding-right:10px;">
+
+                        <div class="col-md-4">
+                            <i class="glyphicon glyphicon-saved">
+                            </i>
+
+                        </div>
+
+                        <div class="col-md-8">
+
+
+                            @Html.ActionLink("SavedJobs", "SavedJobs", "SaveJobs",null, htmlAttributes:new { @class = "btn btn-primary btn-block" })
+
+                        </div>
+
+
+
+
+                    </div>
+                </li>
+
+            }
+
+
+                <li class="divider"></li>
+
+                <li>
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <a href="javascript:document.getElementById('logoutForm').submit() "
+                               class="btn btn-danger btn-block glyphicon glyphicon-log-out"> <b>Log-Out</b></a>
+                        </div>
+
+                    </div>
+
+                </li>
+
+
+
+            </ul>  @*end of inner list*@
+
+
+        </li>
+
+
+        @*//get notification to approve application request by admins.*@
+       
+    @if (User.IsInRole("Admins"))
+        {
+
+            <li style="margin-top:3px;">
+                <span>
+
+                   
+                        <i class="glyphicon glyphicon-bell btn-lg" title="Applications Request"></i>
+                    
+                    @if (db.jobs.Where(jb => jb.IsApproved == false).Count()>0)
+                    {
+                        @Html.ActionLink(@db.jobs.Where(jb => jb.IsApproved == false).Count().ToString(), "index", "jobs",
+                                   null, new { @class = "btn btn-danger btn-xs ", @style = "margin-left:-16px; margin-top:-29px; border-radius:12px 12px 12px 0px" })
+                    }
+
+
+
+                </span>
+            </li>
+        }
+
+
+    </ul> @*end of outer list*@
+
+    }
+
+
+
+
+
+
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right" style="font-size:22px;">
+        <li style="margin-top:5px;">  <i class="glyphicon glyphicon-log-in">@Html.ActionLink("logg-in", "login", "Account")</i></li>
+        <li style="margin-top:5px;">  <i class="glyphicon glyphicon-registration-mark">@Html.ActionLink("Register", "Register", "Account")</i></li>
+
+    </ul>
+}
+
+
+
+

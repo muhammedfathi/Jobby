@@ -1,0 +1,80 @@
+﻿@model Jobby.Models.ApplicationUser
+@using Microsoft.AspNet.Identity
+@using Jobby.Models;
+
+@{
+    ViewBag.Title = "Home Page";
+
+}
+
+
+<div class="jumbotron Main-Clr modal-content" style="padding:20px; padding-bottom:0px;">
+    <div class="home_modal" style="padding:49px; color:rgb(211, 140, 48)">
+
+        <h1 style="color:azure"> Jobby </h1>
+        <p style="font-family:'Times New Roman', Times, serif">
+            is a free website for providing job vacanies for Job seekers that posted by HR Employees, Job seeker visit
+            our site to find A job in his related Field and then can apply for or save it later
+            , We also help Companies and employee to Advertise new Job application and hire new employee
+        </p>
+        
+        <p> @Html.ActionLink("Learn more »", "About", "Home", new { @class = "btn btn-warning" })</p>
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-4 modal-content home_modal">
+        <div style="background-color:rgb(230, 186, 129); padding:4px;">
+            <h2 class="text-center "> @Html.ActionLink("Job Categories", "Index", "jobcategories") </h2>
+            <p class="text-center " style="font-size:large; min-height:120px;">
+                you can find all the job you want here
+                in all fields IT/Software ,
+                Sales, DigitalMarketing,
+                HR/Customer Service,Other
+            </p>
+
+
+        </div>
+    </div>
+
+    <div class="col-md-4 modal-content home_modal">
+        <div style="background-color:rgb(230, 186, 129); padding:4px;">
+            <h2 class="text-center "> @Html.ActionLink("Add new job", "Create", "jobs") </h2>
+            <p class="text-center " style="font-size:large; min-height:120px;">
+
+                you can post a new Applictaion for job and determine the description and all requiremnts
+                after registered as A recrutier
+            </p>
+        </div>
+    </div>
+    <div class="col-md-4 modal-content home_modal">
+        <div style="background-color:rgb(230, 186, 129); padding:4px;">
+            @{
+                if (User.IsInRole("Candidate"))
+                {
+                    <h2 class="text-center "> @Html.ActionLink("Applications  ", "application", "Candidate")</h2>
+                }
+
+                else if (User.IsInRole("Recrutier"))
+                {
+                    <h2 class="text-center "> @Html.ActionLink("Applications  ", "RecrutierApplication", "Recrutier", new { id = User.Identity.GetUserId() }, null)</h2>
+                }
+                else
+                {
+                    <h2 class="text-center " style="color:#1d7cc3"> Application</h2>
+                }
+
+            }
+            <p class="text-center " style="font-size:large; min-height:120px;">
+
+                you can  easily find your previuos Applications which you have applied before as A candidate or
+                Posted As recrutier
+            </p>
+        </div>
+    </div>
+
+
+</div>
+

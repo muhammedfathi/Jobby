@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="jobbyapp-001-site1" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\DELL\\source\\repos\\Jobby\\Jobby\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\DELL\\source\\repos\\Jobby\\Jobby\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="&quot;Data Source=SQL5052.site4now.net;Initial Catalog=DB_A65162_tbljobby;User Id=DB_A65162_tbljobby_admin;Password=Tbljobby@93&quot;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\DELL\\source\\repos\\Jobby\\Jobby\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

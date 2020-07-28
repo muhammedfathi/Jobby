@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Jobby.Models.AppliedUser>
+
+@{
+    ViewBag.Title = "application";
+}
+
+@if (Model.Count() == 0)
+{
+
+    <div class="container modal-content" style="margin-top:120px; min-height:200px; border-radius:80px 30px 80px 0px">
+        <h1 class="alert alert-info text-capitalize text-center " style="margin-top:50px;"> You have not any application yet   </h1>
+
+    </div>
+    <h1 class="btn alert-success" style="margin-top:70px; font-size:x-large"><b> Explore More Jobs And </b> @Html.ActionLink("Apply Now", "Index", "jobs")</h1>
+
+
+}
+
+
+else
+{
+
+<div class="container">
+    <div class="row">
+
+
+        @foreach (var item in Model)
+        {
+            using (Html.BeginForm("app_Delete", "Candidate", new { id = item.JobId }))
+            {
+
+
+                <div class="col-md-3 thumbnail cat_design applicationframecandidate" style="background-color:#8f0b0b;margin:12px; min-height:310px;">
+
+
+                    <div class="thumbnail modal-content" style="padding: 9px;margin-top :7px;  background-color:rgb(230, 186, 129);  min-height:300px;">
+
+                        <span class="alert-success glyphicon  glyphicon-check btn-block text-center" style="font-size:large">
+                            @Html.Label("title:")
+                            @Html.DisplayFor(modelitem => item.job.job_Name)
+                        </span>
+                        <br />
+
+                        <b style="color:#1b43a1;font-size:large"> @Html.LabelFor(modelitem => item.job.PostedBy) :</b>
+                        <br />
+                        <i style="font-size:medium">  @Html.DisplayFor(modelitem => item.job.PostedBy)</i>
+                        <br />
+                        <br />
+
+                        <b style="color:#1b43a1;font-size:large"> @Html.LabelFor(modelitem => item.Applyon) : </b>
+                        <br />
+                        @Html.DisplayFor(modelitem => item.Applyon)
+
+                        <br />
+                        <br />
+
+                        <b style="color:#1b43a1;font-size:large"> @Html.Label("Your Message ") :</b>
+                        <br />
+
+                        <q style="margin:auto"> @Html.DisplayFor(modelitem => item.UserMessage) </q>
+
+
+                    </div>
+
+                    <hr />
+
+                    <span class="applicationframecandidatemang row">
+                        @Html.ActionLink(" ", "app_edit", new { id = item.JobId }, new { @class = "btn btn-primary glyphicon glyphicon-pencil col-lg-3", @style = "margin-right:30px" })
+                        @Html.ActionLink(" ", "app_details", new { id = item.JobId }, new { @class = "btn btn-success col-lg-3 glyphicon glyphicon-eye-open ", @style = "margin-right:32px" })
+
+
+                        <button class="btn btn-danger col-lg-3" type="submit" value="" onclick=" return confirm('Are you Sure ? Delet @item.job.job_Name Application' )">
+
+                            <i class="glyphicon glyphicon-trash "> </i>
+
+                        </button>
+                    </span>
+                </div>
+            }
+
+
+        }
+    </div>
+</div>
+}
+<script src="~/Scripts/myjs.js"></script>
+
